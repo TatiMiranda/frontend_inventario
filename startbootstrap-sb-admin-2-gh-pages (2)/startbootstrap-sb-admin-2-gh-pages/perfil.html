@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Perfil de Usuario</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Perfil de Usuario</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                Información del Usuario
+            </div>
+            <div class="card-body">
+                <form id="form-perfil">
+                    <div class="form-group">
+                        <label for="nombre-usuario">Nombre</label>
+                        <input type="text" class="form-control" id="nombre-usuario" value="Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-usuario">Correo electrónico</label>
+                        <input type="email" class="form-control" id="email-usuario" value="juan.perez@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono-usuario">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono-usuario" value="555-1234">
+                    </div>
+                    <div class="form-group">
+                        <label for="rol-usuario">Rol</label>
+                        <input type="text" class="form-control" id="rol-usuario" value="Administrador" readonly>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // JS simple para mostrar alerta al guardar (sin backend)
+    document.getElementById('form-perfil').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Cambios guardados correctamente.');
+    });
+    </script>
+</body>
+</html>

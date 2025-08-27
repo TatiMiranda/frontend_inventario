@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipos</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- ...otros enlaces y scripts si es necesario... -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Equipos</h1>
+        <!-- Tabla de equipos -->
+        <table class="table table-bordered mb-4" id="tabla-equipos">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Laptop HP</td>
+                    <td>Torre</td>
+                    <td>Monitor</td>
+                    <td>Electrónica</td>
+                </tr>
+                <tr>
+                    <td>Silla ergonómica</td>
+                    <td>Muebles</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar equipo -->
+        <div class="card">
+            <div class="card-header">
+                Agregar nuevo equipo
+            </div>
+            <div class="card-body">
+                <form id="form-equipo">
+                    <div class="form-group">
+                        <label for="nombre-equipo">Nombre del equipo</label>
+                        <input type="text" class="form-control" id="nombre-equipo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="categoria-equipo">Categoría</label>
+                        <select class="form-control" id="categoria-equipo" required>
+                            <option value="">Seleccione una categoría</option>
+                            <option>Electrónica</option>
+                            <option>Muebles</option>
+                            <option>Papelería</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Simple JS para agregar el equipo a la tabla (sin backend)
+    document.getElementById('form-equipo').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre-equipo').value.trim();
+        const categoria = document.getElementById('categoria-equipo').value;
+        if(nombre && categoria) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${nombre}</td><td>${categoria}</td>`;
+            document.querySelector('#tabla-equipos tbody').appendChild(tr);
+            document.getElementById('form-equipo').reset();
+        }
+    });
+    </script>
+</body>
+</html>

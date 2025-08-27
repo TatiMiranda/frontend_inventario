@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sedes</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Sedes</h1>
+        <!-- Tabla de sedes -->
+        <table class="table table-bordered mb-4" id="tabla-sedes">
+            <thead>
+                <tr>
+                    <th>Nombre de la sede</th>
+                    <th>Dirección</th>
+                    <th>Equipos</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sede Pereira</td>
+                    <td>Av. Principal 123</td>
+                    <td>
+                        <ul class="mb-0">
+                            <li>Laptop HP</li>
+                            <li>Silla ergonómica</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="mb-0">
+                            <li>Laptop HP: 10</li>
+                            <li>Silla ergonómica: 5</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sucursal Pereira</td>
+                    <td>Calle Secundaria 456</td>
+                    <td>
+                        <ul class="mb-0">
+                            <li>Silla ergonómica</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="mb-0">
+                            <li>Silla ergonómica: 5</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar sede -->
+        <div class="card">
+            <div class="card-header">
+                Agregar nueva sede
+            </div>
+            <div class="card-body">
+                <form id="form-sede">
+                    <div class="form-group">
+                        <label for="nombre-sede">Nombre de la sede</label>
+                        <input type="text" class="form-control" id="nombre-sede" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion-sede">Dirección</label>
+                        <input type="text" class="form-control" id="direccion-sede" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Simple JS para agregar la sede a la tabla (sin backend)
+    document.getElementById('form-sede').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre-sede').value.trim();
+        const direccion = document.getElementById('direccion-sede').value.trim();
+        if(nombre && direccion) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${nombre}</td>
+                <td>${direccion}</td>
+                <td>
+                    <ul class="mb-0">
+                        <li>-</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul class="mb-0">
+                        <li>-</li>
+                    </ul>
+                </td>
+            `;
+            document.querySelector('#tabla-sedes tbody').appendChild(tr);
+            document.getElementById('form-sede').reset();
+        }
+    });
+    </script>
+</body>
+</html>

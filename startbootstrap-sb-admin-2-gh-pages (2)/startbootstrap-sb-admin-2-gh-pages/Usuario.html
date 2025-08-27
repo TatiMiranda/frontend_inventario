@@ -1,0 +1,42 @@
+<!-- usuarios.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Usuario</title>
+    <script type="module">
+        import { crearUsuario, mostrarUsuario } from './js/usuario.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('formUsuario');
+            const lista = document.getElementById('listaUsuarios');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const nombre = document.getElementById('nombre').value;
+                const email = document.getElementById('email').value;
+                const usuario = crearUsuario(nombre, email);
+
+                // Mostrar en consola
+                mostrarUsuario(usuario);
+
+                // Mostrar en la lista de la página
+                const li = document.createElement('li');
+                li.textContent = `Usuario: ${usuario.nombre}, Email: ${usuario.email}`;
+                lista.appendChild(li);
+
+                form.reset();
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Registrar Usuario</h1>
+    <form id="formUsuario">
+        <input type="text" id="nombre" placeholder="Nombre" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Registrar</button>
+    </form>
+    <ul id="listaUsuarios"></ul>
+</body>
+</html>

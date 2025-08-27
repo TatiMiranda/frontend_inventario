@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Centro de Costos</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Centros de Costos</h1>
+        <!-- Tabla de centros de costos -->
+        <table class="table table-bordered mb-4" id="tabla-centros">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Sede Asociada</th>
+                    <th>Equipos Asociados</th>
+                    <th>Movimientos (Seguimiento)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Administración</td>
+                    <td>Sede Central</td>
+                    <td>Laptop HP, Silla ergonómica</td>
+                    <td>Ingreso Laptop HP (2024-06-01), Traslado Silla ergonómica (2024-06-02)</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar centro de costos -->
+        <div class="card">
+            <div class="card-header">
+                Agregar nuevo centro de costos
+            </div>
+            <div class="card-body">
+                <form id="form-centro">
+                    <div class="form-group">
+                        <label for="nombre-centro">Nombre del centro de costos</label>
+                        <input type="text" class="form-control" id="nombre-centro" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sede-centro">Sede asociada</label>
+                        <select class="form-control" id="sede-centro" required>
+                            <option value="">Seleccione una sede</option>
+                            <option>Sede Central</option>
+                            <option>Sucursal Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipos-centro">Equipos asociados</label>
+                        <select class="form-control" id="equipos-centro" multiple>
+                            <option>Laptop HP</option>
+                            <option>Silla ergonómica</option>
+                        </select>
+                        <small class="form-text text-muted">Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar varios.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="movimientos-centro">Movimientos (Seguimiento)</label>
+                        <input type="text" class="form-control" id="movimientos-centro" placeholder="Ej: Ingreso Laptop HP (2024-06-01)">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // JS para agregar centro de costos a la tabla (sin backend)
+    document.getElementById('form-centro').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre-centro').value.trim();
+        const sede = document.getElementById('sede-centro').value;
+        const equiposSelect = document.getElementById('equipos-centro');
+        const equipos = Array.from(equiposSelect.selectedOptions).map(opt => opt.value).join(', ');
+        const movimientos = document.getElementById('movimientos-centro').value.trim();
+        if(nombre && sede) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${nombre}</td><td>${sede}</td><td>${equipos || '-'}</td><td>${movimientos || '-'}</td>`;
+            document.querySelector('#tabla-centros tbody').appendChild(tr);
+            document.getElementById('form-centro').reset();
+        }
+    });
+    </script>
+</body>
+</html>

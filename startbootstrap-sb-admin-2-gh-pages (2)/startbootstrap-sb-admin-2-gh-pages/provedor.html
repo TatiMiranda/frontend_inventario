@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Proveedores</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Proveedores</h1>
+        <!-- Tabla de proveedores -->
+        <table class="table table-bordered mb-4" id="tabla-proveedores">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Equipos Relacionados</th>
+                    <th>Stock Relacionado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Proveedor ABC</td>
+                    <td>Laptop HP, Silla ergonómica</td>
+                    <td>Laptop HP: 10, Silla ergonómica: 5</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar proveedor -->
+        <div class="card">
+            <div class="card-header">
+                Agregar nuevo proveedor
+            </div>
+            <div class="card-body">
+                <form id="form-proveedor">
+                    <div class="form-group">
+                        <label for="nombre-proveedor">Nombre del proveedor</label>
+                        <input type="text" class="form-control" id="nombre-proveedor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipos-proveedor">Equipos relacionados</label>
+                        <select class="form-control" id="equipos-proveedor" multiple>
+                            <option>Laptop HP</option>
+                            <option>Silla ergonómica</option>
+                        </select>
+                        <small class="form-text text-muted">Mantén presionada la tecla Ctrl (Cmd en Mac) para seleccionar varios.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="stock-proveedor">Stock relacionado (opcional, ejemplo: Laptop HP: 10, Silla ergonómica: 5)</label>
+                        <input type="text" class="form-control" id="stock-proveedor">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // JS para agregar proveedor a la tabla (sin backend)
+    document.getElementById('form-proveedor').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const nombre = document.getElementById('nombre-proveedor').value.trim();
+        const equiposSelect = document.getElementById('equipos-proveedor');
+        const equipos = Array.from(equiposSelect.selectedOptions).map(opt => opt.value).join(', ');
+        const stock = document.getElementById('stock-proveedor').value.trim();
+        if(nombre) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${nombre}</td><td>${equipos || '-'}</td><td>${stock || '-'}</td>`;
+            document.querySelector('#tabla-proveedores tbody').appendChild(tr);
+            document.getElementById('form-proveedor').reset();
+        }
+    });
+    </script>
+</body>
+</html>

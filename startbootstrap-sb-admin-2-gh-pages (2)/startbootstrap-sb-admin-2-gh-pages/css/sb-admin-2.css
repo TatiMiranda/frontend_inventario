@@ -4,6 +4,23 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
  */
 
+/* Custom blue navbar */
+.navbar, .navbar-light, .navbar-dark {
+  background-color: #1976d2 !important; /* Cambiado aquí */
+  /* Un azul bonito, puedes cambiar el valor si prefieres otro tono */
+}
+
+.navbar .navbar-brand,
+.navbar .navbar-nav .nav-link,
+.navbar .navbar-text {
+  color: #fff !important;
+}
+
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+  color: #dbeafe !important;
+}
+
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
@@ -11,7 +28,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-  --blue: #4e73df;
+  --blue: #1976d2;      /* Cambiado aquí */
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -24,7 +41,7 @@
   --white: #fff;
   --gray: #858796;
   --gray-dark: #5a5c69;
-  --primary: #4e73df;
+  --primary: #1976d2;   /* Cambiado aquí */
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -159,7 +176,7 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #3555b8;
   text-decoration: none;
   background-color: transparent;
 }
@@ -2357,33 +2374,33 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #1976d2; /* Cambiado aquí */
+  border-color: #1976d2;     /* Cambiado aquí */
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #115293; /* Un azul más oscuro para hover */
+  border-color: #115293;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #2e59d9;
+  background-color: #2649b3;
   border-color: #2653d4;
   box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #4e73df;
+  background-color: #2649b3;
   border-color: #4e73df;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #2653d4;
+  background-color:#2649b3;
   border-color: #244ec9;
 }
 
@@ -2658,7 +2675,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #4e73df;
+  background-color: #2649b3;
   border-color: #4e73df;
 }
 
@@ -2674,7 +2691,7 @@ fieldset:disabled a.btn {
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #fff;
-  background-color: #4e73df;
+  background-color: #2649b3;
   border-color: #4e73df;
 }
 
@@ -2914,7 +2931,7 @@ fieldset:disabled a.btn {
 }
 
 .btn-link:hover {
-  color: #224abe;
+  color: #1933a7;
   text-decoration: underline;
 }
 
@@ -3207,7 +3224,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #4e73df;
+  background-color: #1976d2; /* Cambiado aquí */
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -3553,7 +3570,7 @@ input[type="button"].btn-block {
   min-height: 1.5rem;
   padding-left: 1.5rem;
   -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 .custom-control-inline {
@@ -3573,7 +3590,7 @@ input[type="button"].btn-block {
 .custom-control-input:checked ~ .custom-control-label::before {
   color: #fff;
   border-color: #4e73df;
-  background-color: #4e73df;
+  background-color: #2649b3;
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
@@ -3638,7 +3655,7 @@ input[type="button"].btn-block {
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::before {
   border-color: #4e73df;
-  background-color: #4e73df;
+  background-color: #2649b3;
 }
 
 .custom-checkbox .custom-control-input:indeterminate ~ .custom-control-label::after {
@@ -6411,13 +6428,13 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #4e73df !important;
+  background-color: #1976d2 !important; /* Cambiado aquí */
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #2653d4 !important;
+  background-color: #115293 !important; /* Cambiado aquí */
 }
 
 .bg-secondary {

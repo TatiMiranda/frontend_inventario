@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Seguimiento de Movimientos de Stock</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Seguimiento de Movimientos de Stock</h1>
+        <!-- Tabla de movimientos -->
+        <table class="table table-bordered mb-4" id="tabla-movimientos">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Equipo</th>
+                    <th>Sede Origen</th>
+                    <th>Sede Destino</th>
+                    <th>Cantidad</th>
+                    <th>Tipo de Movimiento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2024-06-01</td>
+                    <td>Laptop HP</td>
+                    <td>Sede Central</td>
+                    <td>Sucursal Norte</td>
+                    <td>2</td>
+                    <td>Traslado</td>
+                </tr>
+                <tr>
+                    <td>2024-06-02</td>
+                    <td>Silla ergonómica</td>
+                    <td>-</td>
+                    <td>Sede Central</td>
+                    <td>5</td>
+                    <td>Ingreso</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar movimiento -->
+        <div class="card">
+            <div class="card-header">
+                Registrar nuevo movimiento
+            </div>
+            <div class="card-body">
+                <form id="form-movimiento">
+                    <div class="form-group">
+                        <label for="fecha-movimiento">Fecha</label>
+                        <input type="date" class="form-control" id="fecha-movimiento" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="equipo-movimiento">Equipo</label>
+                        <select class="form-control" id="equipo-movimiento" required>
+                            <option value="">Seleccione un equipo</option>
+                            <option>Laptop HP</option>
+                            <option>Silla ergonómica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-movimiento">Tipo de Movimiento</label>
+                        <select class="form-control" id="tipo-movimiento" required>
+                            <option value="">Seleccione tipo</option>
+                            <option value="Ingreso">Ingreso</option>
+                            <option value="Egreso">Egreso</option>
+                            <option value="Traslado">Traslado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sede-origen">Sede Origen</label>
+                        <select class="form-control" id="sede-origen">
+                            <option value="">-</option>
+                            <option>Sede Central</option>
+                            <option>Sucursal Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sede-destino">Sede Destino</label>
+                        <select class="form-control" id="sede-destino">
+                            <option value="">-</option>
+                            <option>Sede Central</option>
+                            <option>Sucursal Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad-movimiento">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad-movimiento" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // JS para agregar movimiento a la tabla (sin backend)
+    document.getElementById('form-movimiento').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const fecha = document.getElementById('fecha-movimiento').value;
+        const equipo = document.getElementById('equipo-movimiento').value;
+        const tipo = document.getElementById('tipo-movimiento').value;
+        const origen = document.getElementById('sede-origen').value || '-';
+        const destino = document.getElementById('sede-destino').value || '-';
+        const cantidad = document.getElementById('cantidad-movimiento').value;
+        if(fecha && equipo && tipo && cantidad) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${fecha}</td>
+                <td>${equipo}</td>
+                <td>${origen}</td>
+                <td>${destino}</td>
+                <td>${cantidad}</td>
+                <td>${tipo}</td>
+            `;
+            document.querySelector('#tabla-movimientos tbody').appendChild(tr);
+            document.getElementById('form-movimiento').reset();
+        }
+    });
+    </script>
+</body>
+</html>

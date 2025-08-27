@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock</title>
+    <link href="css/sb-admin-2.css" rel="stylesheet">
+    <!-- ...otros enlaces y scripts si es necesario... -->
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Stock</h1>
+        <!-- Tabla de stock -->
+        <table class="table table-bordered mb-4" id="tabla-stock">
+            <thead>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Sede</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Laptop HP</td>
+                    <td>Sede Central</td>
+
+                    <td>10</td>
+                </tr>
+                <tr>
+                    <td>Silla ergonómica</td>
+                    <td>Sucursal Norte</td>
+                    <td>5</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- Formulario para agregar stock -->
+        <div class="card">
+            <div class="card-header">
+                Agregar nuevo stock
+            </div>
+            <div class="card-body">
+                <form id="form-stock">
+                    <div class="form-group">
+                        <label for="equipo-stock">Equipo</label>
+                        <select class="form-control" id="equipo-stock" required>
+                            <option value="">Seleccione un equipo</option>
+                            <option>Laptop HP</option>
+                            <option>Silla ergonómica</option>
+                        </select>
+                    </div>
+                         <label for="equipo-stock">torre, monitor</label>
+                        <select class="form-control" id="equipo-stock" required>
+                            <option value="">Seleccione un equipo</option>
+                            <option>Laptop HP</option>
+                            <option>Silla ergonómica</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sede-stock">Sede</label>
+                        <select class="form-control" id="sede-stock" required>
+                            <option value="">Seleccione una sede</option>
+                            <option>Sede Central</option>
+                            <option>Sucursal Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sede-stock">Sede</label>
+                        <select class="form-control" id="sede-stock" required>
+                            <option value="">Seleccione una sede</option>
+                            <option>Sede Central</option>
+                            <option>Sucursal Norte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cantidad-stock">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad-stock" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    // Simple JS para agregar el stock a la tabla (sin backend)
+    document.getElementById('form-stock').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const equipo = document.getElementById('equipo-stock').value;
+        const sede = document.getElementById('sede-stock').value;
+        const cantidad = document.getElementById('cantidad-stock').value;
+        if(equipo && sede && cantidad) {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${equipo}</td><td>${sede}</td><td>${cantidad}</td>`;
+            document.querySelector('#tabla-stock tbody').appendChild(tr);
+            document.getElementById('form-stock').reset();
+        }
+    });
+    </script>
+</body>
+</html>
