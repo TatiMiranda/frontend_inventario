@@ -6,8 +6,7 @@
 
 /* Custom blue navbar */
 .navbar, .navbar-light, .navbar-dark {
-  background-color: #1976d2 !important; /* Cambiado aquí */
-  /* Un azul bonito, puedes cambiar el valor si prefieres otro tono */
+  background-color: #4e73df !important; /* Valor original restaurado */
 }
 
 .navbar .navbar-brand,
@@ -28,7 +27,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-  --blue: #1976d2;      /* Cambiado aquí */
+  --blue: #4e73df;      /* Valor original restaurado */
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -41,7 +40,7 @@
   --white: #fff;
   --gray: #858796;
   --gray-dark: #5a5c69;
-  --primary: #1976d2;   /* Cambiado aquí */
+  --primary: #4e73df;   /* Valor original restaurado */
   --secondary: #858796;
   --success: #1cc88a;
   --info: #36b9cc;
@@ -2374,14 +2373,14 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #1976d2; /* Cambiado aquí */
-  border-color: #1976d2;     /* Cambiado aquí */
+  background-color: #4e73df; /* Valor original restaurado */
+  border-color: #4e73df;     /* Valor original restaurado */
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #115293; /* Un azul más oscuro para hover */
-  border-color: #115293;
+  background-color: #2e59d9; /* Valor original restaurado */
+  border-color: #2653d4;     /* Valor original restaurado */
 }
 
 .btn-primary:focus, .btn-primary.focus {
@@ -3224,7 +3223,7 @@ input[type="button"].btn-block {
 .dropdown-item.active, .dropdown-item:active {
   color: #fff;
   text-decoration: none;
-  background-color: #1976d2; /* Cambiado aquí */
+  background-color: #4e73df; /* Valor original restaurado */
 }
 
 .dropdown-item.disabled, .dropdown-item:disabled {
@@ -6428,13 +6427,13 @@ a.close.disabled {
 }
 
 .bg-primary {
-  background-color: #1976d2 !important; /* Cambiado aquí */
+  background-color: #4e73df !important; /* Valor original restaurado */
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
 button.bg-primary:hover,
 button.bg-primary:focus {
-  background-color: #115293 !important; /* Cambiado aquí */
+  background-color: #224abe !important; /* Valor original restaurado */
 }
 
 .bg-secondary {
