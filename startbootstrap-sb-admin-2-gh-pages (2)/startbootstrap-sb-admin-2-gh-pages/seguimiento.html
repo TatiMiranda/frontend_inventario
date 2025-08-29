@@ -99,6 +99,10 @@
         .text-end {
             text-align: right;
         }
+        #form-feedback {
+            font-size: 0.875em;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
@@ -113,7 +117,7 @@
                 <a href="categoria.html" class="list-group-item list-group-item-action active  bg-dark-blue text-white p-3"><i class="bi bi-tags-fill me-2"></i> Categorías</a>
                 <a href="sedes.html" class="list-group-item list-group-item-action active  bg-dark-blue text-white p-3"><i class="bi bi-geo-alt-fill me-2"></i> Sedes</a>
                 <a href="seguimiento.html" class="list-group-item list-group-item-action active bg-dark-blue text-white p-3"><i class="bi bi-truck me-2"></i> Seguimiento</a>
-                <a href="stock.html" class="list-group-item list-group-item-action active  bg-dark-blue text-white p-3"><i class="bi bi-box-seam-fill me-2"></i> Stock</a>
+                <a href="stock.html" class="list-group-item list-group-item-action  active bg-dark-blue text-white p-3"><i class="bi bi-box-seam-fill me-2"></i> Stock</a>
                 <a href="centro_costos.html" class="list-group-item list-group-item-action active  bg-dark-blue text-white p-3"><i class="bi bi-cash-coin me-2"></i> Centro de Costos</a>
             </div>
         </div>
@@ -133,6 +137,8 @@
                                 <thead>
                                     <tr>
                                         <th>Fecha</th>
+                                        <th>Piso</th>
+                                        <th>Rol</th>
                                         <th>Equipo</th>
                                         <th>Sede Origen</th>
                                         <th>Sede Destino</th>
@@ -144,6 +150,8 @@
                                 <tbody>
                                     <tr>
                                         <td>2024-06-01</td>
+                                        <td>-</td>
+                                        <td>-</td>
                                         <td>Laptop HP</td>
                                         <td>Sede Central</td>
                                         <td>Sucursal Norte</td>
@@ -155,6 +163,8 @@
                                     </tr>
                                     <tr>
                                         <td>2024-06-02</td>
+                                        <td>-</td>
+                                        <td>-</td>
                                         <td>Silla ergonómica</td>
                                         <td>-</td>
                                         <td>Sede Central</td>
@@ -182,9 +192,29 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-movimiento">
+                        <p id="form-feedback" class="text-danger d-none"></p>
                         <div class="mb-3">
                             <label for="fecha-movimiento" class="form-label">Fecha</label>
                             <input type="date" class="form-control" id="fecha-movimiento" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="piso-movimiento" class="form-label">Piso</label>
+                            <select class="form-control" id="piso-movimiento" required>
+                                <option value="">Seleccione un piso</option>
+                                <option>Piso 1. Administrador </option>
+                                <option>Piso 1. Plataforma</option>
+                                <option>Piso 2</option>
+                                <option>Piso 3</option>
+                                <option>Piso 4</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="rol-movimiento" class="form-label">Rol</label>
+                            <select class="form-control" id="rol-movimiento" required>
+                                <option value="">Seleccione un rol</option>
+                                <option>Administrador</option>
+                                <option>Plataforma</option>
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="equipo-movimiento" class="form-label">Equipo</label>
@@ -222,36 +252,56 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // JS para agregar movimiento a la tabla (sin backend)
         document.getElementById('form-movimiento').addEventListener('submit', function(e) {
             e.preventDefault();
-            const fecha = document.getElementById('fecha-movimiento').value;
-            const equipo = document.getElementById('equipo-movimiento').value.trim();
-            const tipo = document.getElementById('tipo-movimiento').value;
-            const origen = document.getElementById('sede-origen').value.trim() || '-';
-            const destino = document.getElementById('sede-destino').value.trim() || '-';
-            const cantidad = document.getElementById('cantidad-movimiento').value;
 
-            // Validación básica para campos requeridos
-            if(fecha && equipo && tipo && cantidad) {
-                const tr = document.createElement('tr');
-                tr.innerHTML = `
-                    <td>${fecha}</td>
-                    <td>${equipo}</td>
-                    <td>${origen}</td>
-                    <td>${destino}</td>
-                    <td>${cantidad}</td>
-                    <td>${tipo}</td>
-                    <td class="text-end">
-                        <button class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Eliminar</button>
-                    </td>
-                `;
-                document.querySelector('#tabla-movimientos tbody').appendChild(tr);
-                document.getElementById('form-movimiento').reset();
-                const modal = bootstrap.Modal.getInstance(document.getElementById('modalMovimiento'));
-                modal.hide();
+            const form = e.target;
+            const fecha = form['fecha-movimiento'].value;
+            const piso = form['piso-movimiento'].value;
+            const rol = form['rol-movimiento'].value;
+            const equipo = form['equipo-movimiento'].value.trim();
+            const tipo = form['tipo-movimiento'].value;
+            const origen = form['sede-origen'].value.trim() || '-';
+            const destino = form['sede-destino'].value.trim() || '-';
+            const cantidad = form['cantidad-movimiento'].value;
+
+            // Validación de campos requeridos
+            const feedbackElement = document.getElementById('form-feedback');
+            if (!fecha || !equipo || !tipo || !cantidad || !piso || !rol) {
+                feedbackElement.textContent = 'Por favor, completa todos los campos requeridos.';
+                feedbackElement.classList.remove('d-none');
+                return;
             } else {
-                alert('Por favor, completa todos los campos requeridos.');
+                feedbackElement.classList.add('d-none');
+            }
+
+            // Crear y añadir la nueva fila a la tabla
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${fecha}</td>
+                <td>${piso}</td>
+                <td>${rol}</td>
+                <td>${equipo}</td>
+                <td>${origen}</td>
+                <td>${destino}</td>
+                <td>${cantidad}</td>
+                <td>${tipo}</td>
+                <td class="text-end">
+                    <button class="btn btn-danger btn-sm"><i class="bi bi-trash-fill"></i> Eliminar</button>
+                </td>
+            `;
+            document.querySelector('#tabla-movimientos tbody').appendChild(tr);
+
+            // Reiniciar el formulario y cerrar el modal
+            form.reset();
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalMovimiento'));
+            modal.hide();
+        });
+
+        // Event listener para eliminar filas de la tabla
+        document.querySelector('#tabla-movimientos tbody').addEventListener('click', function(e) {
+            if (e.target.closest('.btn-danger')) {
+                e.target.closest('tr').remove();
             }
         });
     </script>
